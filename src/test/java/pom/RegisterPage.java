@@ -5,11 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class PlanetariumPage{
+public class RegisterPage {
     private WebDriver driver;
 
-    @FindBy(linkText = "Create an Account")
-    private WebElement registerLink;
+    @FindBy(linkText = "login")
+    private WebElement loginLink;
 
     @FindBy(id="usernameInput")
     private WebElement usernameInput;
@@ -18,13 +18,18 @@ public class PlanetariumPage{
     private WebElement passwordInput;
 
     @FindBy(xpath="//input[@type='submit']")
-    private WebElement loginButton;
+    private WebElement createButton;
 
-
-
-    public PlanetariumPage(WebDriver driver){
+    public RegisterPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
+    public void clickCreateButton(){
+        createButton.click();
+    }
+
+    public void clickLoginLink(){
+        loginLink.click();
+    }
 }
