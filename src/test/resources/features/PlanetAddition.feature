@@ -4,41 +4,40 @@
   Feature: Planet addition
    #because the user has to be properly logged in to see the planet creation input, we can set up a background
     Background:
-      Given user is logged in
-      And on home page
+      Given the user is properly logged in on the home page
       When user clicks planet creation input
 
     # in this scenario we use positive test data with adding an image
-    Scenario:
+    Scenario: provided valid name and image, planet should be added
       And the user provides valid planet name
       When the user decides to upload an image
-      And the user provides a valid filetype
-      Then the table should refresh
+      And the user provides a valid planet image filetype
+      And the user clicks submit
+      Then the table should refresh after planet added
       And the user should be able to see the new planet added
 
     #in this scenario we use positive test data without adding an image
-    Scenario:
+    Scenario:provided valid name and no image, planet should be added
       And the user provides valid planet name
       When the user decides not to upload an image
-      Then the table should refresh
+      And the user clicks submit
+      Then the table should refresh after planet added
       And the user should be able to see the new planet added
 
    #in this scenario we use negative test data to test image format requirement
-   Scenario:
-     When the user clicks the planet creation input
+   Scenario:provided valid name but invalid image, browser alert should appear
      And the user provides valid planet name
      When the user decides to upload an image
-     And the user uploads invalid file type
-     Then the user should get a browser alert saying "Invalid filetype"
+     And the user uploads invalid planet image file type
+     And the user clicks submit
+     Then the user should get a browser alert saying Invalid filetype
      And the user should stay on the home page
 
      #in this scenario we we negative test data to test planet name requirements
-    Scenario Outline:
-      Given the user is properly logged in to their account
-      And the user is on the home page
-      When the user clicks the planet creation input
-      And the user provides planet name"<planet name>"
-      Then the user should get a browser alert saying "Invalid planet name"
+    Scenario Outline:provided invalid name, browser alert should appear
+      And the user provides planet name "<planet name>"
+      And the user clicks submit
+      Then the user should get a browser alert saying Invalid planet name
       And the user should stay on the home page
 
       Examples:
@@ -46,4 +45,4 @@
        |           |
        |iDontKnowWhatToNameThisPlanet11|
        |M@r$|
-       |E-arth 6_16|
+       |Earth|

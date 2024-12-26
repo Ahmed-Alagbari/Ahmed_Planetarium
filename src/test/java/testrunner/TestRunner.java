@@ -16,10 +16,11 @@ import java.time.Duration;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        //features = "classpath:features/UserRegistration.feature",
-        features = "classpath:features/UserLogin.feature",
-
-        glue = "steps"
+        features = "classpath:features",
+        glue = "steps",
+        plugin = {"pretty",
+                "html:src/test/resources/reports/html-report.html",
+                "json:src/test/resources/reports/json-report.json"}
 )
 
 public class TestRunner {

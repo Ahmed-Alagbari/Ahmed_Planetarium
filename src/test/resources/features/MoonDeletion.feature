@@ -4,19 +4,17 @@
 Feature: Moon deletion
 
     #this scenario uses positive test data
-  Scenario:
-    Given the user is properly logged in to their account
-    And the user is on the home page
+  Scenario:provided valid moon name to delete, moon should be deleted
+    Given the user is properly logged in on the home page
     When the user clicks the moon deletion input
-    And the user provides vaild moon name
-    Then the table should refresh
+    And the user provides valid moon name to be deleted
+    Then the table should refresh after moon removed
     And the user should be able to see the named moon removed
 
      #this scenario uses negative test data
-  Scenario:
-    Given the user is properly logged in to their account
-    And the user is on the home page
+  Scenario:provided invalid moon name to delete, alert should pop up
+    Given the user is properly logged in on the home page
     When the user clicks the moon deletion input
-    And the use provides invaild moon name
-    Then the user should get a browser alert saying "Invalid moon name"
+    And the use provides invalid moon name to be deleted
+    Then the user should get a browser alert saying Invalid moon name
     And the user should stay on the home page
